@@ -76,20 +76,20 @@ Successfully created a Deployment, scaled it from 1 Pod to 3 Pods, and verified 
 
 ---
 
-## Screenshots
+## screenshots
 
 ### Get Deployments
 
-![Get Deployments](Screenshots/01-get-deployments.png)
+![Get Deployments](screenshots/01-get-deployments.png)
 
 ### Get Pods
 
-![Get Pods](Screenshots/02-get-pods.png)
+![Get Pods](screenshots/02-get-pods.png)
 
 ### Describe Deployment
 
-![Describe Deployment](Screenshots/03-describe-deployment.png)
+![Describe Deployment](screenshots/03-describe-deployment.png)
 
 ### Self-Healing
 
-![Self-Healing](Screenshots/04-self-healing.png)
+![Self-Healing](screenshots/04-self-healing.png)
