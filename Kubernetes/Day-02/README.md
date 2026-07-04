@@ -84,6 +84,7 @@ Successfully created a Deployment, scaled it from 1 Pod to 3 Pods, and verified 
 
 ### Get Pods
 
+
 ![Get Pods](screenshots/02-get-pods.png)
 
 ### Describe Deployment

@@ -76,20 +76,20 @@ Successfully created a NodePort Service and accessed the Nginx application throu
 
 ### Get Services
 
-![Get Services](Screenshots/01-get-services.png)
+![Get Services](screenshots/01-get-services.png)
 
 ### Describe Service
 
-![Describe Service](Screenshots/02-describe-service.png)
+![Describe Service](screenshots/02-describe-service.png)
 
 ### Minikube Service
 
-![Minikube Service](Screenshots/03-minikube-service.png)
+![Minikube Service](screenshots/03-minikube-service.png)
 
 ### Nginx Website
 
-![Nginx Website](Screenshots/04-nginx-browser.png)
+![Nginx Website](screenshots/04-nginx-browser.png)
 
 ### Running Pods
 
-![Running Pods](Screenshots/05-get-pods.png)
+![Running Pods](screenshots/05-get-pods.png)
