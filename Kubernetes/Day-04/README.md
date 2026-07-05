@@ -15,6 +15,30 @@ Learn how to create and manage Kubernetes Deployments using YAML files with the 
 - Updating Deployment using YAML
 
 ---
+## Imperative vs Declarative Approach
+
+### Imperative Approach
+
+In the imperative approach, Kubernetes resources are created using direct commands.
+
+Example:
+
+```bash
+kubectl create deployment nginx --image=nginx
+```
+
+### Declarative Approach
+
+In the declarative approach, Kubernetes resources are managed using YAML files.
+
+Example:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+In this practical, we used the declarative approach by creating and applying a Deployment YAML file.
+
 
 ## Practical Performed
 
@@ -86,10 +110,11 @@ kubectl get pods
 
 ## What I Learned
 
-- YAML is the standard way to manage Kubernetes resources.
-- Declarative approach is preferred in real-world projects.
-- kubectl apply updates existing resources.
-- Changing replicas in YAML automatically updates Pods.
+- Learned the difference between Imperative and Declarative approaches.
+- Generated a Deployment YAML file.
+- Applied the YAML file using `kubectl apply`.
+- Updated the Deployment by changing replicas.
+- Verified Deployments and Pods.
 
 ---
 
