@@ -194,16 +194,16 @@ Checked that Service automatically updated endpoints.
 
 # Screenshots
 
- 01-get-nodes.png
- 02-create-deployment.png
- 03-get-deployment.png
- 04-get-pods.png
- 05-clusterip-service.png
- 06-describe-service.png
- 07-service-endpoints.png
- 08-nodeport-service.png
- 09-nodeport-browser-access.png
- 10-scaling-final-endpoints.png
+ 1. 01-get-nodes.png
+ 2. 02-create-deployment.png
+ 3. 03-get-deployment.png
+ 4. 04-get-pods.png
+ 5. 05-clusterip-service.png
+ 6. 06-describe-service.png
+ 7. 07-service-endpoints.png
+ 8. 08-nodeport-service.png
+ 9. 09-nodeport-browser-access.png
+10. 10-scaling-final-endpoints.png
 
 
 # Day-11 Summary
