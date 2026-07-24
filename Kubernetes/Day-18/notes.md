@@ -42,17 +42,19 @@ my-nginx
 
 ---
 
-## Helm Workflow
+# Helm Workflow
 
+```text
 Helm Repository
-        ↓
+      ↓
 Search Chart
-        ↓
+      ↓
 Install Chart
-        ↓
+      ↓
 Create Release
-        ↓
+      ↓
 Deploy Application
+```
 
 ---
 
