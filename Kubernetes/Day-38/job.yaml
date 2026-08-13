@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: demo-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: job-container
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - "echo Kubernetes Job started; echo Task completed successfully"
+  backoffLimit: 2
