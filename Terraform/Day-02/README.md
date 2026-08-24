@@ -104,3 +104,15 @@ Resource managed by Terraform
 * Output values
 * Variable overriding
 * Reusable Terraform configuration
+
+
+---
+
+## Screenshots
+
+Practical screenshots:
+
+1. [Terraform Init and Validate](Screenshots/01-init-validate.png)
+2. [Terraform Plan](Screenshots/02-plan.png)
+3. [Terraform Apply and Output](Screenshots/03-apply-output.png)
+4. [Variable Override](Screenshots/04-variable-override.png)

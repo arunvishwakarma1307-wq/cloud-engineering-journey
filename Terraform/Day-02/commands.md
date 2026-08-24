@@ -155,3 +155,18 @@ terraform output
 terraform state list
 terraform destroy
 ```
+
+---
+
+## Screenshots
+
+The command execution evidence is stored in:
+
+```text
+Screenshots/
+├── 01-init-validate.png
+├── 02-plan.png
+├── 03-apply-output.png
+└── 04-variable-override.png
+
+ total Screenshots: 4
