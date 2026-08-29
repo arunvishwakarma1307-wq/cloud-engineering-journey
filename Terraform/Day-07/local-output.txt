@@ -1,0 +1,1 @@
+terraform-day-07-learning - Hello from Terraform Locals
