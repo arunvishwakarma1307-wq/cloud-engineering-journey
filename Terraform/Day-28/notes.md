@@ -2,32 +2,32 @@
 
 ## Terraform Plan
 
-`terraform plan` Terraform configuration ko analyze karta hai aur batata hai ki infrastructure me kya changes honge.
+`terraform plan` analyzes the Terraform configuration and shows what changes Terraform intends to make to the infrastructure.
 
-Ye resources ko directly create ya modify nahi karta.
+It does not directly create or modify resources.
 
-Terraform plan generally batata hai:
+A Terraform plan generally shows:
 
 - Resources to add
 - Resources to change
 - Resources to destroy
-- Final planned result
+- The final planned result
 
 ---
 
 ## Saved Terraform Plan
 
-Terraform kisi plan ko ek file me save kar sakta hai.
+Terraform can save an execution plan into a file.
 
-Iska main purpose hai ki planned changes ko baad me review karke usi saved plan ko apply kiya ja sake.
+The main purpose of a saved plan is to allow the planned changes to be reviewed before applying them.
 
-Saved plan useful hota hai jab infrastructure changes ko apply karne se pehle review ya approval required ho.
+This is useful when infrastructure changes require review or approval before execution.
 
 ---
 
 ## Plan File
 
-Saved plan ek normal text file nahi hoti.
+A saved Terraform plan is stored as a plan file.
 
 Example:
 
@@ -35,17 +35,17 @@ Example:
 tfplan
 ```
 
-Is file me Terraform ka generated execution plan store hota hai.
+The file contains the generated Terraform execution plan.
 
-Plan file ko manually edit nahi karna chahiye.
+A saved plan file should not be manually edited.
 
 ---
 
 ## `terraform plan -out`
 
-`terraform plan -out=tfplan` Terraform ke generated plan ko `tfplan` file me save karta hai.
+The `terraform plan -out=tfplan` command generates a Terraform plan and saves it into the `tfplan` file.
 
-Isse plan ko later inspect aur apply kiya ja sakta hai.
+The saved plan can later be inspected and applied.
 
 Concept:
 
@@ -62,17 +62,17 @@ Terraform Configuration
 
 ## Reviewing a Saved Plan
 
-Saved plan ko readable format me inspect kiya ja sakta hai.
+A saved plan can be inspected before it is applied.
 
-Terraform saved plan ko human-readable output me display kar sakta hai.
+Terraform can display the saved plan in a human-readable format.
 
-Isse apply karne se pehle planned changes ko review karna possible hota hai.
+This allows planned infrastructure changes to be reviewed before execution.
 
 ---
 
 ## `terraform show`
 
-`terraform show` saved Terraform plan ko readable form me display karne ke liye use hota hai.
+`terraform show` displays the contents of a saved Terraform plan in a human-readable format.
 
 Example:
 
@@ -84,13 +84,13 @@ terraform show
 Readable Plan
 ```
 
-Ye especially useful hai jab saved plan ko apply karne se pehle changes verify karne ho.
+It is useful for reviewing the planned changes before applying the saved plan.
 
 ---
 
 ## Applying a Saved Plan
 
-Saved plan ko directly apply kiya ja sakta hai.
+A saved Terraform plan can be applied directly.
 
 Concept:
 
@@ -104,7 +104,7 @@ Apply Saved Plan
 Infrastructure Changes
 ```
 
-Saved plan apply karne ka purpose ye hota hai ki reviewed plan ko use karke changes execute kiye ja saken.
+Applying the saved plan allows the previously generated plan to be used for the infrastructure changes.
 
 ---
 
@@ -112,7 +112,7 @@ Saved plan apply karne ka purpose ye hota hai ki reviewed plan ko use karke chan
 
 ### Normal Apply
 
-Normal `terraform apply` ke case me Terraform apply process ke time plan generate karta hai.
+With a normal `terraform apply`, Terraform performs the planning and application workflow together.
 
 ```text
 Configuration
@@ -124,7 +124,7 @@ Apply
 
 ### Saved Plan Apply
 
-Saved plan workflow me plan pehle generate aur save kiya jata hai.
+With a saved plan workflow, the plan is generated and saved before it is applied.
 
 ```text
 Configuration
@@ -140,23 +140,23 @@ Apply Saved Plan
 
 ## Plan Review
 
-Plan review infrastructure changes ko apply karne se pehle verify karne ka important step hai.
+Plan review is an important step for checking infrastructure changes before they are applied.
 
-Review ke time check kiya ja sakta hai:
+During a plan review, it is possible to check:
 
-- Kaunsa resource create hoga
-- Kaunsa resource change hoga
-- Kaunsa resource destroy hoga
-- Resource attributes me kya changes honge
-- Planned infrastructure expected configuration ke according hai ya nahi
+- Which resources will be created
+- Which resources will be changed
+- Which resources will be destroyed
+- Which resource attributes will change
+- Whether the planned changes match the expected configuration
 
 ---
 
 ## Saved Plan and Automation
 
-Saved plans CI/CD aur controlled infrastructure workflows me useful ho sakte hain.
+Saved plans can be useful in CI/CD and controlled infrastructure workflows.
 
-Ek workflow me:
+A typical workflow can be:
 
 ```text
 Terraform Configuration
@@ -170,31 +170,31 @@ Review / Approval
 Apply
 ```
 
-Isse infrastructure changes ko apply karne se pehle review process add kiya ja sakta hai.
+This allows infrastructure changes to be reviewed before they are applied.
 
 ---
 
 ## Important Security Point
 
-Terraform saved plan files ko casually share nahi karna chahiye.
+Terraform saved plan files should be handled carefully.
 
-Plan files me infrastructure configuration aur potentially sensitive values ki information ho sakti hai.
+Plan files may contain infrastructure configuration details and potentially sensitive information.
 
-Isliye saved plan files ko:
+Therefore, saved plan files should:
 
-- Git repository me unnecessarily commit nahi karna chahiye
-- Publicly share nahi karna chahiye
-- Secure location me rakhna chahiye
+- Not be unnecessarily committed to Git repositories
+- Not be publicly shared
+- Be stored in a secure location
 
 ---
 
 ## Saved Plan vs Terraform State
 
-Saved plan aur Terraform state same cheez nahi hain.
+A saved plan and Terraform state are different concepts.
 
 ### Saved Plan
 
-Saved plan batata hai:
+A saved plan represents:
 
 ```text
 What Terraform plans to do
@@ -202,7 +202,7 @@ What Terraform plans to do
 
 ### Terraform State
 
-Terraform state track karta hai:
+Terraform state represents information about:
 
 ```text
 What Terraform currently manages
@@ -219,7 +219,7 @@ State → Managed Infrastructure Information
 
 ## Final Verification
 
-Saved plan apply hone ke baad `terraform plan` dobara run karke verify kiya ja sakta hai ki configuration aur managed infrastructure me koi pending difference nahi hai.
+After applying a saved plan, `terraform plan` can be run again to verify whether any infrastructure changes are still pending.
 
 Expected result:
 
@@ -228,11 +228,13 @@ No changes.
 Your infrastructure matches the configuration.
 ```
 
+This confirms that the infrastructure matches the Terraform configuration.
+
 ---
 
 ## Real-World Use
 
-Saved Terraform plans useful ho sakte hain:
+Saved Terraform plans can be useful for:
 
 - Infrastructure change review
 - Approval workflows
