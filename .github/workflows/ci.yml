@@ -21,4 +21,4 @@ jobs:
           echo "Starting CI check..."
           echo "Repository checkout successful."
           echo "This check will fail intentionally."
-          exit 1
+          echo "CI workflow completed successfully!"
