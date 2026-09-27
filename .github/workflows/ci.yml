@@ -16,8 +16,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check repository
+      - name: Run CI check
         run: |
           echo "Starting CI check..."
           echo "Repository checkout successful."
-          echo "CI workflow completed successfully!"
+          echo "This check will fail intentionally."
+          exit 1
