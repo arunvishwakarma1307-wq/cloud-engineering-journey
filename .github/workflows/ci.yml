@@ -1,4 +1,4 @@
-name: Basic CI
+name: CI Pipeline
 
 on:
   push:
@@ -9,16 +9,25 @@ on:
       - main
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run CI check
+      - name: Build stage
         run: |
-          echo "Starting CI check..."
+          echo "Starting build stage..."
           echo "Repository checkout successful."
-          echo "This check will fail intentionally."
-          echo "CI workflow completed successfully!"
+          echo "Build stage completed successfully."
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test stage
+        run: |
+          echo "Starting test stage..."
+          echo "Tests completed successfully."
