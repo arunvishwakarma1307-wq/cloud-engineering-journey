@@ -20,7 +20,8 @@ jobs:
         run: |
           echo "Starting build stage..."
           echo "Repository checkout successful."
-          echo "Build stage completed successfully."
+          echo "Build stage failed intentionally."
+          exit 1
 
   test:
     needs: build
