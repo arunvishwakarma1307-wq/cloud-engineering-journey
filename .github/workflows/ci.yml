@@ -22,6 +22,18 @@ jobs:
           echo "Repository checkout successful."
           echo "Build stage completed successfully."
 
+      - name: Create build artifact
+        run: |
+          mkdir build-output
+          echo "Cloud Engineering Journey - Day 03" > build-output/build-info.txt
+          echo "GitHub Actions artifact created successfully." >> build-output/build-info.txt
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: day-03-build-artifact
+          path: build-output/
+
   test:
     needs: build
     runs-on: ubuntu-latest
