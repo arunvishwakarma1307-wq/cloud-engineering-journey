@@ -22,16 +22,27 @@ jobs:
           echo "Repository checkout successful."
           echo "Build stage completed successfully."
 
+      - name: Check repository secret
+        env:
+          DAY4_SECRET: ${{ secrets.DAY4_TEST_SECRET }}
+        run: |
+          if [ -n "$DAY4_SECRET" ]; then
+            echo "Repository secret is available."
+          else
+            echo "Repository secret is not available."
+            exit 1
+          fi
+
       - name: Create build artifact
         run: |
           mkdir build-output
-          echo "Cloud Engineering Journey - Day 03" > build-output/build-info.txt
-          echo "GitHub Actions artifact created successfully." >> build-output/build-info.txt
+          echo "Cloud Engineering Journey - Day 04" > build-output/build-info.txt
+          echo "GitHub Actions secret check completed successfully." >> build-output/build-info.txt
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: day-03-build-artifact
+          name: day-04-build-artifact
           path: build-output/
 
   test:
