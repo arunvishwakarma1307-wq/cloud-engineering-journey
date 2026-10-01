@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    outputs:
+      build-version: ${{ steps.generate-value.outputs.BUILD_VERSION }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,6 +24,13 @@ jobs:
           echo "Starting build stage..."
           echo "Repository checkout successful."
           echo "Build stage completed successfully."
+
+      - name: Generate build value
+        id: generate-value
+        run: |
+          BUILD_VERSION="day-05-build-001"
+          echo "BUILD_VERSION=$BUILD_VERSION" >> "$GITHUB_OUTPUT"
+          echo "Generated build version: $BUILD_VERSION"
 
       - name: Check repository secret
         env:
@@ -50,6 +60,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Receive build output
+        env:
+          BUILD_VERSION: ${{ needs.build.outputs.build-version }}
+        run: |
+          echo "Received build version: $BUILD_VERSION"
+          echo "Test job received the output from build job successfully."
+
       - name: Test stage
         run: |
           echo "Starting test stage..."
