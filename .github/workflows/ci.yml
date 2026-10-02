@@ -33,7 +33,7 @@ jobs:
           echo "Generated build version: $BUILD_VERSION"
 
       - name: Conditional step
-        if: ${{ steps.generate-value.outputs.BUILD_VERSION == 'day-05-build-001' }}
+        if: ${{ steps.generate-value.outputs.BUILD_VERSION == 'day-06-build-001' }}
         run: |
           echo "Condition is TRUE."
           echo "Conditional step executed successfully."
