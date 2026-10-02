@@ -32,6 +32,12 @@ jobs:
           echo "BUILD_VERSION=$BUILD_VERSION" >> "$GITHUB_OUTPUT"
           echo "Generated build version: $BUILD_VERSION"
 
+      - name: Conditional step
+        if: ${{ steps.generate-value.outputs.BUILD_VERSION == 'day-05-build-001' }}
+        run: |
+          echo "Condition is TRUE."
+          echo "Conditional step executed successfully."
+
       - name: Check repository secret
         env:
           DAY4_SECRET: ${{ secrets.DAY4_TEST_SECRET }}
