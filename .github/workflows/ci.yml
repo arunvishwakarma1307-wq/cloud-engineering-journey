@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  DAY7_ENV: "cloud-engineering-day-07"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +27,7 @@ jobs:
           echo "Starting build stage..."
           echo "Repository checkout successful."
           echo "Build stage completed successfully."
+          echo "Environment: $DAY7_ENV"
 
       - name: Generate build value
         id: generate-value
