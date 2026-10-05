@@ -31,7 +31,11 @@ jobs:
           echo "Starting build stage..."
           echo "Repository checkout successful."
           echo "Build stage completed successfully."
-          echo "Environment: $DAY7_ENV"
+          echo "Step-level environment: $DAY7_ENV"
+
+      - name: Check job-level environment
+        run: |
+          echo "Job-level environment: $DAY7_ENV"
 
       - name: Generate build value
         id: generate-value
