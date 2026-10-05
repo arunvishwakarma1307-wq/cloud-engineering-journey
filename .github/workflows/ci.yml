@@ -13,6 +13,8 @@ env:
 
 jobs:
   build:
+    env:
+      DAY7_ENV: "cloud-engineering-day-08-job"
     runs-on: ubuntu-latest
 
     outputs:
@@ -23,6 +25,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build stage
+        env:
+          DAY7_ENV: "cloud-engineering-day-08-step"
         run: |
           echo "Starting build stage..."
           echo "Repository checkout successful."
