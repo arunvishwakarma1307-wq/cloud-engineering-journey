@@ -89,3 +89,15 @@ jobs:
         run: |
           echo "Starting test stage..."
           echo "Tests completed successfully."
+
+  deploy:
+    needs: test
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy stage
+        run: |
+          echo "Test job completed successfully."
+          echo "Deploy job condition is TRUE."
+          echo "Deployment stage executed successfully."
