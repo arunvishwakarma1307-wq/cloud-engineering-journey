@@ -101,3 +101,26 @@ jobs:
           echo "Test job completed successfully."
           echo "Deploy job condition is TRUE."
           echo "Deployment stage executed successfully."
+
+  failure-demo:
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Intentional failure
+        run: |
+          echo "Starting intentional failure demonstration..."
+          echo "This job will fail for Day-10 testing."
+          exit 1
+
+  cleanup:
+    needs: failure-demo
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cleanup and reporting stage
+        run: |
+          echo "Failure-demo job finished."
+          echo "always() condition is TRUE."
+          echo "Cleanup/reporting stage executed despite previous failure."
