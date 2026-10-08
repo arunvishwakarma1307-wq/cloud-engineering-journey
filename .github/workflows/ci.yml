@@ -124,3 +124,21 @@ jobs:
           echo "Failure-demo job finished."
           echo "always() condition is TRUE."
           echo "Cleanup/reporting stage executed despite previous failure."
+
+  continue-on-error-demo:
+    needs: cleanup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Allowed failure
+        continue-on-error: true
+        run: |
+          echo "Starting continue-on-error demonstration..."
+          echo "This step will fail, but the job will continue."
+          exit 1
+
+      - name: Continue after failure
+        run: |
+          echo "The previous step failed."
+          echo "continue-on-error allowed this step to continue."
+          echo "Workflow execution continued successfully."
