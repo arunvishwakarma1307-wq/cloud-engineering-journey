@@ -126,7 +126,7 @@ jobs:
           echo "Cleanup/reporting stage executed despite previous failure."
 
   continue-on-error-demo:
-    needs: cleanup
+    needs: deploy
     runs-on: ubuntu-latest
 
     steps:
