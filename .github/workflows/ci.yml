@@ -16,6 +16,7 @@ jobs:
     env:
       DAY7_ENV: "cloud-engineering-day-08-job"
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     outputs:
       build-version: ${{ steps.generate-value.outputs.BUILD_VERSION }}
