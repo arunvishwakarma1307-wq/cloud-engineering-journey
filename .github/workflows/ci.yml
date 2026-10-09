@@ -143,3 +143,17 @@ jobs:
           echo "The previous step failed."
           echo "continue-on-error allowed this step to continue."
           echo "Workflow execution continued successfully."
+
+  timeout-demo:
+    name: Day-12 Timeout Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - name: Start timeout test
+        run: |
+          echo "Day-12 timeout test started."
+          echo "Job timeout is set to 1 minute."
+          echo "This command will run for 2 minutes."
+          sleep 120
+          echo "This line should not be reached."
