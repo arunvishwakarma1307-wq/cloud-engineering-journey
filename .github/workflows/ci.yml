@@ -1,6 +1,7 @@
 name: CI Pipeline
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -13,10 +14,11 @@ env:
 
 jobs:
   build:
-    env:
-      DAY7_ENV: "cloud-engineering-day-08-job"
+    name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      DAY7_ENV: "cloud-engineering-day-08-job"
 
     outputs:
       build-version: ${{ steps.generate-value.outputs.BUILD_VERSION }}
@@ -75,9 +77,9 @@ jobs:
           path: build-output/
 
   test:
+    name: Test
     needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Receive build output
         env:
@@ -92,10 +94,10 @@ jobs:
           echo "Tests completed successfully."
 
   deploy:
+    name: Deploy
     needs: test
     if: ${{ success() }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Deploy stage
         run: |
@@ -104,9 +106,9 @@ jobs:
           echo "Deployment stage executed successfully."
 
   failure-demo:
+    name: Failure Demo
     needs: deploy
     runs-on: ubuntu-latest
-
     steps:
       - name: Intentional failure
         run: |
@@ -115,10 +117,10 @@ jobs:
           exit 1
 
   cleanup:
+    name: Cleanup
     needs: failure-demo
     if: ${{ always() }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Cleanup and reporting stage
         run: |
@@ -127,9 +129,9 @@ jobs:
           echo "Cleanup/reporting stage executed despite previous failure."
 
   continue-on-error-demo:
+    name: Continue on Error Demo
     needs: deploy
     runs-on: ubuntu-latest
-
     steps:
       - name: Allowed failure
         continue-on-error: true
@@ -148,7 +150,6 @@ jobs:
     name: Day-12 Timeout Test
     runs-on: ubuntu-latest
     timeout-minutes: 1
-
     steps:
       - name: Start timeout test
         run: |
