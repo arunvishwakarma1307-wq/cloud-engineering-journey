@@ -1,0 +1,16 @@
+name: Day-14 Reusable Workflow Demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/day14-main.yml'
+      - '.github/workflows/reusable-build.yml'
+      - 'CI-CD/Day-14/**'
+
+jobs:
+  call-reusable-workflow:
+    name: Call Reusable Build
+    uses: ./.github/workflows/reusable-build.yml
