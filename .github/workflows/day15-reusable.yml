@@ -1,0 +1,20 @@
+name: Day-15 Reusable Workflow with Inputs
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        description: "Name of the application"
+        required: true
+        type: string
+
+jobs:
+  reusable-build:
+    name: Build Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display application name
+        run: |
+          echo "Reusable workflow executed successfully!"
+          echo "Application Name: ${{ inputs.app_name }}"

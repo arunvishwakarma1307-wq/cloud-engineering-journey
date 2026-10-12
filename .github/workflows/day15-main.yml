@@ -1,0 +1,11 @@
+name: Day-15 Main Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-reusable-workflow:
+    name: Call Reusable Workflow
+    uses: ./.github/workflows/day15-reusable.yml
+    with:
+      app_name: "Cloud Guard"
