@@ -1,0 +1,21 @@
+
+name: Day-16 Matrix Strategy Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-matrix:
+    name: Test on ${{ matrix.environment }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        environment: [development, staging, production]
+
+    steps:
+      - name: Show environment
+        run: echo "Running test for ${{ matrix.environment }}"
+
+      - name: Confirm success
+        run: echo "Matrix job completed successfully!"
