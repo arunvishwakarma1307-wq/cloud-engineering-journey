@@ -1,0 +1,26 @@
+
+name: Day-17 Concurrency Control Demo
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: day17-demo-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  concurrency-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show run information
+        run: |
+          echo "Day-17 Concurrency Control Demo"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Run number: ${{ github.run_number }}"
+
+      - name: Simulate a running task
+        run: |
+          echo "Task started..."
+          sleep 30
+          echo "Task completed successfully!"
