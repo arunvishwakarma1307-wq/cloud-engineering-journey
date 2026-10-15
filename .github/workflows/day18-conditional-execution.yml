@@ -1,0 +1,25 @@
+
+name: Day-18 Conditional Execution Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  conditional-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1 - Always Run
+        run: echo "This step runs normally."
+
+      - name: Step 2 - Run Only If Condition Is True
+        if: ${{ true }}
+        run: echo "Condition is TRUE. This step runs."
+
+      - name: Step 3 - Skip If Condition Is False
+        if: ${{ false }}
+        run: echo "You should not see this message."
+
+      - name: Step 4 - Run After Successful Steps
+        if: ${{ success() }}
+        run: echo "Previous steps succeeded. This step runs."
