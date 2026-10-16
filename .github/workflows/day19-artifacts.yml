@@ -1,0 +1,26 @@
+
+name: Day-19 Artifacts Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create a report
+        run: |
+          mkdir -p output
+          echo "Day-19 GitHub Actions Artifacts Demo" > output/report.txt
+          echo "Workflow completed successfully." >> output/report.txt
+          echo "Artifact generated for learning purposes." >> output/report.txt
+
+      - name: Show report content
+        run: cat output/report.txt
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: day19-report
+          path: output/report.txt
