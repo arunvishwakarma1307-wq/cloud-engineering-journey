@@ -1,0 +1,29 @@
+
+name: Day-21 Pull Request CI Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  pull-request-check:
+    name: Validate Pull Request
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify repository files
+        run: |
+          echo "Pull Request CI check started."
+          test -f README.md
+          test -d .github/workflows
+          echo "Required repository files exist."
+
+      - name: CI check passed
+        run: echo "Day-21 Pull Request CI check passed."
