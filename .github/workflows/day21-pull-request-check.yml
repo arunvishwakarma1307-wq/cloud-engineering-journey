@@ -21,8 +21,8 @@ jobs:
       - name: Verify repository files
         run: |
           echo "Pull Request CI check started."
-          test -f README.md
-          test -d .github/workflows
+          test -f "CI-CD/Day-20/README.md"
+          test -f ".github/workflows/day21-pull-request-check.yml"
           echo "Required repository files exist."
 
       - name: CI check passed
