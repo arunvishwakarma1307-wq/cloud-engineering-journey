@@ -1,0 +1,31 @@
+﻿name: Day-22 Concurrency Control
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: day22-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  concurrency-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start workflow
+        run: |
+          echo "Day-22 concurrency control started."
+          echo "Workflow run ID: $GITHUB_RUN_ID"
+          echo "Branch: $GITHUB_REF_NAME"
+
+      - name: Simulate a running task
+        run: |
+          echo "Task is running..."
+          sleep 30
+          echo "Task completed."
