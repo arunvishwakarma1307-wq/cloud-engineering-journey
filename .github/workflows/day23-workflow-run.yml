@@ -1,0 +1,34 @@
+
+name: Day-23 Workflow Run Listener
+
+on:
+  workflow_run:
+    workflows:
+      - Day-23 Source Workflow
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  after-source:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Report source workflow result
+        env:
+          SOURCE_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          echo "Source workflow has completed."
+          echo "Source run ID: $SOURCE_RUN_ID"
+          echo "Source result: $SOURCE_CONCLUSION"
+
+      - name: Confirm successful source run
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        run: echo "Day-23 follow-up workflow triggered after success."
+
+      - name: Report unsuccessful source run
+        if: ${{ github.event.workflow_run.conclusion != 'success' }}
+        run: echo "Source workflow did not succeed."

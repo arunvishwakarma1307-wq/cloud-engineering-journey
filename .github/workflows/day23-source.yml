@@ -1,0 +1,19 @@
+
+name: Day-23 Source Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-task:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run source task
+        run: |
+          echo "Day-23 source workflow started."
+          echo "Running the source task..."
+          echo "Source workflow completed successfully."
