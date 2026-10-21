@@ -1,0 +1,39 @@
+
+name: Day-24 Workflow Inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: "Select the target environment"
+        type: choice
+        required: true
+        default: staging
+        options:
+          - development
+          - staging
+          - production
+
+      deployment_message:
+        description: "Enter a message for this run"
+        type: string
+        required: true
+        default: "Day-24 manual input test"
+
+permissions:
+  contents: read
+
+jobs:
+  show-inputs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display selected inputs
+        env:
+          TARGET_ENVIRONMENT: ${{ inputs.target_environment }}
+          DEPLOYMENT_MESSAGE: ${{ inputs.deployment_message }}
+        run: |
+          echo "Day-24 Workflow Inputs Demo"
+          echo "Selected environment: $TARGET_ENVIRONMENT"
+          echo "Message: $DEPLOYMENT_MESSAGE"
+          echo "This is a demonstration only. No deployment was performed."
