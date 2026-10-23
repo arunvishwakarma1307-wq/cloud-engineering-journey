@@ -1,0 +1,36 @@
+name: Day-25 Job Outputs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-output:
+    runs-on: ubuntu-latest
+
+    outputs:
+      app_environment: ${{ steps.set-output.outputs.environment_name }}
+
+    steps:
+      - name: Generate job output
+        id: set-output
+        run: echo "environment_name=staging" >> "$GITHUB_OUTPUT"
+
+      - name: Display generated value
+        env:
+          GENERATED_ENVIRONMENT: ${{ steps.set-output.outputs.environment_name }}
+        run: echo "Generated environment is $GENERATED_ENVIRONMENT"
+
+  consume-output:
+    runs-on: ubuntu-latest
+    needs: generate-output
+
+    steps:
+      - name: Read output from previous job
+        env:
+          APP_ENVIRONMENT: ${{ needs.generate-output.outputs.app_environment }}
+        run: |
+          echo "Output received from previous job."
+          echo "Application environment is $APP_ENVIRONMENT"
