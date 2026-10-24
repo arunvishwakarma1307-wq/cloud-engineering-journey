@@ -1,4 +1,4 @@
-```yaml
+
 name: Day-26 Dependency Caching
 
 on:
@@ -31,4 +31,3 @@ jobs:
         run: |
           python --version
           python -c "import requests; print('Requests version:', requests.__version__)"
-```
