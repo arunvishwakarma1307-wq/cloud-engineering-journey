@@ -1,0 +1,63 @@
+name: Day-27 Smart CI-CD Change Detection
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "Kubernetes/**"
+      - "Terraform/**"
+      - "CI-CD/Day-27/**"
+      - "**/*.md"
+      - ".github/workflows/day27-change-detection.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      app_changed: ${{ steps.filter.outputs.app }}
+      docs_changed: ${{ steps.filter.outputs.docs }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed files
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            app:
+              - 'Kubernetes/**'
+              - 'Terraform/**'
+            docs:
+              - '**/*.md'
+              - 'CI-CD/Day-27/**'
+
+  app-check:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.app_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Application changes detected
+        run: echo "Kubernetes or Terraform files changed. Run relevant checks here."
+
+  docs-check:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.docs_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Documentation changes detected
+        run: echo "Documentation files changed. Run documentation checks here."
+
+  no-relevant-changes:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.app_changed != 'true' && needs.detect-changes.outputs.docs_changed != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: No matching changes
+        run: echo "No Kubernetes, Terraform, or documentation changes detected."
