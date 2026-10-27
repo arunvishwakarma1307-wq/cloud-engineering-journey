@@ -1,0 +1,43 @@
+name: Day-29 GitHub Actions Job Dependencies
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "CI-CD/Day-29/**"
+      - ".github/workflows/day29-job-dependencies.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    name: Setup Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare environment
+        run: echo "Setup completed successfully."
+
+  build:
+    name: Build Job
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Build demonstration
+        run: echo "Build completed after setup."
+
+  test:
+    name: Test Job
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Test demonstration
+        run: echo "Tests completed after build."
+
+  deploy:
+    name: Deploy Job
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Deployment demonstration
+        run: echo "Deployment demonstration completed after tests."
