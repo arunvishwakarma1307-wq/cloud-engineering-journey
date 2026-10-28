@@ -1,0 +1,28 @@
+
+name: Day-30 GitHub Actions Pinned Dependencies
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "CI-CD/Day-30/**"
+      - ".github/workflows/day30-pinned-actions.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pinned-actions-demo:
+    name: Verify Pinned Actions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Display workflow information
+        run: |
+          echo "Day-30 pinned actions demonstration"
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Workflow completed successfully."
