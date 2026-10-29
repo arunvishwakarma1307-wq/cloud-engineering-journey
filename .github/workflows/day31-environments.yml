@@ -1,0 +1,34 @@
+
+name: Day-31 GitHub Actions Environments
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "CI-CD/Day-31/**"
+      - ".github/workflows/day31-environments.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  development:
+    name: Development Environment
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: Development deployment demo
+        run: |
+          echo "Development environment selected."
+          echo "Application is ready for development testing."
+
+  production:
+    name: Production Environment
+    runs-on: ubuntu-latest
+    needs: development
+    environment: production
+    steps:
+      - name: Production deployment demo
+        run: |
+          echo "Production environment selected."
+          echo "Production deployment demonstration completed."
