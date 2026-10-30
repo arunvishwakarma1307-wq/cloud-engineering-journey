@@ -1,0 +1,29 @@
+name: Day-32 Workflow Security
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "CI-CD/Day-32/**"
+      - ".github/workflows/day32-workflow-security.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  security-check:
+    name: Workflow Security Check
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display security information
+        run: |
+          echo "Day-32 Workflow Security"
+          echo "Repository access is read-only."
+          echo "No unnecessary write permissions are granted."
