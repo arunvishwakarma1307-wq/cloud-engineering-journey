@@ -1,0 +1,29 @@
+name: Day-33 Third-Party Actions Security
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "CI-CD/Day-33/**"
+      - ".github/workflows/day33-third-party-security.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  security-check:
+    name: Third-Party Action Security Check
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display action security information
+        run: |
+          echo "Day-33 Third-Party Actions Security"
+          echo "External actions should be reviewed before use."
+          echo "Only trusted actions should be used in workflows."
