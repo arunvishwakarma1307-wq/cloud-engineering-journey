@@ -5,14 +5,15 @@ on:
   push:
     paths:
       - "CI-CD/Day-33/**"
-      - ".github/workflows/day33-third-party-security.yml"
+      - "scripts/check_action_pinning.py"
+      - ".github/workflows/**"
 
 permissions:
   contents: read
 
 jobs:
-  security-check:
-    name: Third-Party Action Security Check
+  security-audit:
+    name: Third-Party Actions Security Audit
     runs-on: ubuntu-latest
 
     permissions:
@@ -20,10 +21,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - name: Display action security information
+      - name: Set up Python
         run: |
-          echo "Day-33 Third-Party Actions Security"
-          echo "External actions should be reviewed before use."
-          echo "Only trusted actions should be used in workflows."
+          python --version
+
+      - name: Run GitHub Actions security auditor
+        run: |
+          python scripts/check_action_pinning.py
