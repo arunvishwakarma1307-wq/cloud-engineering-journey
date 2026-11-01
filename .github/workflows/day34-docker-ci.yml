@@ -1,0 +1,51 @@
+name: Day 34 - Docker CI
+
+on:
+  push:
+    paths:
+      - "CI-CD/Day-34/**"
+      - ".github/workflows/day34-docker-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docker-build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          docker build \
+            -f CI-CD/Day-34/Dockerfile \
+            -t day34-python-app:1.0 .
+
+      - name: Run Docker Container
+        run: |
+          docker run -d \
+            --name day34-container \
+            -p 8000:8000 \
+            day34-python-app:1.0
+
+      - name: Test Application
+        run: |
+          for i in {1..10}; do
+            if curl --fail http://localhost:8000; then
+              echo "Docker application test passed!"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Docker application test failed!"
+          docker logs day34-container
+          exit 1
+
+      - name: Stop Docker Container
+        if: always()
+        run: |
+          docker stop day34-container || true
+          docker rm day34-container || true
